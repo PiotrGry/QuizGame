@@ -25,10 +25,6 @@ const config = {
 
 const pool = new Pool(config);
 
-app.get('/',(req,res)=> {
-    res.sendFile( __dirname + "/" + "index.html")
-});
-
 app.post('/users',(req,res)=> {
     const userName = req.body.userName;
 
@@ -46,7 +42,6 @@ app.post('/users',(req,res)=> {
 });
 
 app.get("/users",(req,res)=> {
-    let user = null;
 
     pool.connect((err, client, done) => {
         if (err) throw err
