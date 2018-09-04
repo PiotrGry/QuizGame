@@ -1,5 +1,4 @@
 const express = require('express');
-const { Client } = require('pg');
 const bodyParser = require('body-parser');
 const fs = require("fs");
 const app = express();
@@ -42,10 +41,6 @@ app.post('/users',(req,res)=> {
 
 app.get("/users",(req,res)=> {
     let user = null;
-    const client = new Client({
-        connectionString: conString,
-        ssl: true,
-    });
 
     pool.connect((err, client, done) => {
         if (err) throw err
