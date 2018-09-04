@@ -50,7 +50,6 @@ app.get("/users",(req,res)=> {
                 console.log(err.stack)
             } else {
                 res.send(result.rows[0]);
-                console.log(result.rows[0])
             }
         })
     })
