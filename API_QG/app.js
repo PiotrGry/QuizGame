@@ -30,13 +30,19 @@ app.get('/',(req,res)=> {
 });
 
 app.post('/users',(req,res)=> {
-    const reqBody = req.body;
+    const userName = req.body.userName;
 
-    client.connect();
-    client.query('INSERT INTO  users(user_nick) VALUES($1);', [reqBody.userName], (err, res) => {
-        if (err) throw err;
-
-    });
+    pool.connect((err, client, done) => {
+        if (err) throw err
+        client.query('INSERT INTO players(user_nick) VALUES($1);', [userName], (err, result) => {
+            done()
+            if (err) {
+                console.log(err.stack)
+            } else {
+                res.send(result);
+            }
+        })
+    })
 });
 
 app.get("/users",(req,res)=> {
