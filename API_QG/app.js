@@ -7,13 +7,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-    });
-    app.get('/',(req,res)=> {
-        res.sendFile( __dirname + "/" + "index.html")
-    });
+
+app.get('/',(req,res)=> {
+    res.sendFile( __dirname + "/" + "index.html")
+});
 
 app.post('/users',(req,res)=> {
     const reqBody = req.body;
@@ -24,18 +21,24 @@ app.post('/users',(req,res)=> {
 
     });
 });
-app.get("/users",(req,result)=> {
+
+app.get("/users",(req,res)=> {
     let user = null;
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
+    });
+
     client.connect();
-    client.query('SELECT * FROM users;', (err, res) => {
+    client.query('SELECT * FROM users;', (err, result) => {
         if (err) throw err;
-        for (let row of res.rows) {
+        for (let row of result.rows) {
              user = JSON.stringify(row);
 
         }
-        result.send(user);
+        res.send(user);
         client.end();
-        result.end();
+        res.end();
     });
 
 });
