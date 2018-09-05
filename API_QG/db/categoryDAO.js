@@ -23,7 +23,7 @@ categoryDao.getAllCategories = function () {
     });
 };
 
-categoryDao.getQuestionWithCorrectAnswer= function() {
+categoryDao.getQuestionWithCorrectAnswer= function(req) {
     return new Promise((resolve, reject)=> {
         pool.connect((err, client, done) => {
             if (err) {

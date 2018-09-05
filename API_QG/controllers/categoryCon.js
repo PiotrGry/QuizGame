@@ -9,7 +9,7 @@ categoryCon.getAllCategories = function (req, res) {
 };
 
 categoryCon.getQuestionWithCorrectAnswer = function(req, res){
-    categoryDao.getQuestionWithCorrectAnswer().then((result) =>{
+    categoryDao.getQuestionWithCorrectAnswer(req).then((result) =>{
         res.json(result);
         res.end();
     });
