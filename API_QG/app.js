@@ -10,19 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.post('/users',(req,res)=> {
-    const userName = req.body.userName;
-
-    pool.connect((err, client, done) => {
-        if (err) throw err
-        client.query('INSERT INTO players(user_nick) VALUES($1);', [userName], (err, result) => {
-            done()
-            if (err) {
-                console.log(err.stack)
-            } else {
-                res.send(result);
-            }
-        })
-    })
+    userCon.addUser(req, res);
 });
 
 app.get("/users",(req, res)=> {
