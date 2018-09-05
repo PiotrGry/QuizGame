@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const pool = require('./db/db');
 const userCon = require('./controllers/userCon');
 const categoryCon = require("./controllers/categoryCon");
+const moment = require('moment');
 
 
 const app = express();
@@ -31,6 +32,7 @@ app.get("/categories/:category_name",(req,res)=> {
 const server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;
+    var time = moment().format('h:mm:ss a');
 
-    console.log(`Example app listening at http://${host}:${port}`)
+    console.log(`Example app listening at http://${host}:${port} at ${time})
 });
