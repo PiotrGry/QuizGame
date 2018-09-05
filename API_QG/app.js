@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const pool = require('./db');
 
+const userDao = require('./userDAO');
+
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -24,18 +26,7 @@ app.post('/users',(req,res)=> {
 });
 
 app.get("/users",(req,res)=> {
-
-    pool.connect((err, client, done) => {
-        if (err) throw err
-        client.query('SELECT * FROM players;', (err, result) => {
-            done()
-            if (err) {
-                console.log(err.stack)
-            } else {
-                res.send(result.rows[0]);
-            }
-        })
-    })
+    userDao.findUsers(req, res);
 });
 
 const server = app.listen(8080, function () {
