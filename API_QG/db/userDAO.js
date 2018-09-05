@@ -1,4 +1,4 @@
-let User = require("./models/User");
+let User = require("../models/User");
 const pool = require('./db');
 const userDao = {};
 const Promise = require('promise');

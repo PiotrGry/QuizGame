@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pool = require('./db');
+const pool = require('./db/db');
 
-const userCon = require('./userCon');
+const userCon = require('./controllers/userCon');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));

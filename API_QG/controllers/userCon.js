@@ -1,4 +1,4 @@
-const userDao = require('./userDAO');
+const userDao = require('../db/userDAO');
 const userCon = {};
 
 userCon.findUsers = function(req, res) {
