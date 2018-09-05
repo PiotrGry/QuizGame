@@ -1,8 +1,17 @@
 class User{
 
-    constructor(nick, score){
+    constructor(id, nick, score){
+        this._id = id;
         this._nick = nick;
         this._score = score;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
     }
 
     get nick() {
