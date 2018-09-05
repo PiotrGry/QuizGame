@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const pool = require('./db');
 
-const userDao = require('./userDAO');
+const userCon = require('./userCon');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -25,8 +25,8 @@ app.post('/users',(req,res)=> {
     })
 });
 
-app.get("/users",(req,res)=> {
-    userDao.findUsers(req, res);
+app.get("/users",(req, res)=> {
+    userCon.findUsers(req, res);
 });
 
 const server = app.listen(8080, function () {
