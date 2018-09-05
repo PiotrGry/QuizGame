@@ -34,5 +34,5 @@ const server = app.listen(8080, function () {
     var port = server.address().port;
     var time = moment().format('h:mm:ss a');
 
-    console.log(`Example app listening at http://${host}:${port} at ${time})
+    console.log(`Example app listening at http://${host}:${port} at ${time}`)
 });
