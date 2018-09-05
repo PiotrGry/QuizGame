@@ -8,4 +8,11 @@ categoryCon.getAllCategories = function (req, res) {
     });
 };
 
+categoryCon.getQuestionWithCorrectAnswer = function(req, res){
+    categoryDao.getQuestionWithCorrectAnswer().then((result) =>{
+        res.json(result);
+        res.end();
+    });
+};
+
 module.exports = categoryCon;
