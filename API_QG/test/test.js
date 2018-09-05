@@ -1,33 +1,32 @@
-const assert = require('chai').assert;
-const categoryCon = require("../controllers/categoryCon");
-const request = require("request");
+const chai = require('chai');
+var chaiHttp = require('chai-http');
+var server = require('../app');
+var should = chai.should();
 
+chai.use(chaiHttp);
 
+describe('Category', function() {
+    it('should list ALL categories on /categories GET');
+    it('should return 4 elements on /categories GET');
 
-describe('Array', function() {
-    describe('#indexOf()', function() {
-        it('should return -1 when the value is not present', function(){
-            assert.equal(-1, [1,2,3].indexOf(4));
+});
+
+it('should list ALL categories on /categories GET', function(done) {
+    chai.request('http://localhost:8080')
+        .get('/categories')
+        .end(function(err, res){
+            res.should.have.status(200);
+            done();
         });
-    });
+});
+
+it('should return 4 elements on /categories GET', function(done) {
+    chai.request('http://localhost:8080')
+        .get('/categories')
+        .end(function(err, res){
+            res.body.length.should.be.equal(4);
+            done();
+        });
 });
 
 
-
-const options = {
-    method: 'GET',
-    url: 'http://localhost:8080/categories',
-    headers:
-        {
-            'postman-token': 'f37dc117-d272-78a2-65d9-4d64737d16fb',
-            'cache-control': 'no-cache',
-            'content-type': 'application/x-www-form-urlencoded'
-        },
-    form: false
-};
-
-request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    assert.equal(body,categoryCon.getAllCategories() );
-});
