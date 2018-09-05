@@ -16,7 +16,7 @@ userDao.findUsers = function() {
                     if (err) {
                         console.log(err.stack)
                     } else {
-                        return resolve(result.rows[0]);
+                        return resolve(result.rows);
                     }
                 })
             }
