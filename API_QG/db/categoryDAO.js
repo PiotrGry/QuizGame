@@ -1,4 +1,4 @@
-let Category = require("../models/Category");
+const Category = require("../models/Category");
 const pool = require ("./db");
 const categoryDao = {};
 const Promise = require('promise');
@@ -15,13 +15,25 @@ categoryDao.getAllCategories = function () {
                     if (err) {
                         console.log(err.stack)
                     } else {
-                        return resolve(result.rows);
+                        let categories = createCategories(result.rows);
+                        return resolve(categories);
                     }
-                })
+                });
             }
         })
     });
 };
+
+function createCategories(categArr) {
+    const categories = [];
+
+    for (i = 0;  i < categArr.length; i++) {
+        let category = new Category(categArr[i].category_id, categArr[i].category_name,);
+        categories.push(category);
+    }
+    return categories;
+}
+
 
 categoryDao.getQuestionWithCorrectAnswer= function(req) {
     return new Promise((resolve, reject)=> {
@@ -42,6 +54,7 @@ categoryDao.getQuestionWithCorrectAnswer= function(req) {
                 if (err) {
                     console.log(console.error(err));
                 } else {
+
                     return resolve(result.rows);
                 }
             });
