@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pool = require('./db/db');
 const userCon = require('./controllers/userCon');
 const categoryCon = require("./controllers/categoryCon");
 const moment = require('moment');
