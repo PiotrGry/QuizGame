@@ -30,3 +30,5 @@ class Question {
         this._correctAnswer = value;
     }
 }
+
+module.exports = Question;

@@ -12,3 +12,5 @@ class Category {
         this._name = value;
     }
 }
+
+module.exports = Category;

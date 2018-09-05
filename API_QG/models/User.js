@@ -21,3 +21,5 @@ class User{
         this._score = value;
     }
 }
+
+module.exports = User;

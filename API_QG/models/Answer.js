@@ -12,3 +12,5 @@ class Answer {
         this._text = value;
     }
 }
+
+module.exports = Answer;
