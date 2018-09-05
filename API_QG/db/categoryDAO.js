@@ -3,7 +3,7 @@ const pool = require ("./db");
 const categoryDao = {};
 const Promise = require('promise');
 
-function getAllCategories() {
+categoryDao.getAllCategories = function () {
     return new Promise((resolve, reject) =>{
         pool.connect((err, client, done) => {
             if (err){
@@ -21,6 +21,6 @@ function getAllCategories() {
             }
         })
     });
-}
+};
 
-module.export = categoryDao;
+module.exports = categoryDao;
