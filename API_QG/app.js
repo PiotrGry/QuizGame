@@ -17,22 +17,10 @@ app.get("/users",(req, res)=> {
     userCon.findUsers(req, res);
 });
 
+
+
 app.get("/categories",(req,res)=> {
-
-    pool.connect((err, client, done) => {
-        if (err) throw err;
-        client.query('select category_name from categories\n' +
-            'order by random()\n' +
-            'limit 1', (err, result) => {
-            done();
-            if (err) {
-                console.log(err.stack)
-            } else {
-                res.send(result.rows);
-
-            }
-        })
-    })
+    getAllCategories(res);
 });
 app.get("/categories/:category_name",(req,res)=> {
     pool.connect((err, client, done) => {
@@ -56,10 +44,6 @@ app.get("/categories/:category_name",(req,res)=> {
         });
     })
 });
-// app.get("/categories/:category_name",(req,res)=> {
-//     res.send(req.params.category_name);
-// });
-//
 
 const server = app.listen(8080, function () {
     var host = server.address().address;
