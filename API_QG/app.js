@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require("fs");
 const app = express();
 const Pool = require('pg-pool');
-const url = require('url')
+const url = require('url');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -29,9 +29,9 @@ app.post('/users',(req,res)=> {
     const userName = req.body.userName;
 
     pool.connect((err, client, done) => {
-        if (err) throw err
+        if (err) throw err;
         client.query('INSERT INTO players(user_nick) VALUES($1);', [userName], (err, result) => {
-            done()
+            done();
             if (err) {
                 console.log(err.stack)
             } else {
@@ -44,13 +44,29 @@ app.post('/users',(req,res)=> {
 app.get("/users",(req,res)=> {
 
     pool.connect((err, client, done) => {
-        if (err) throw err
+        if (err) throw err;
         client.query('SELECT * FROM players;', (err, result) => {
-            done()
+            done();
             if (err) {
                 console.log(err.stack)
             } else {
                 res.send(result.rows[0]);
+            }
+        })
+    })
+});
+
+app.get("/categories",(req,res)=> {
+
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query('SELECT category_name FROM categories;', (err, result) => {
+            done();
+            if (err) {
+                console.log(err.stack)
+            } else {
+                res.send(result.rows);
+
             }
         })
     })
