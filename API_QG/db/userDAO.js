@@ -24,7 +24,7 @@ userDao.findUsers = function() {
 
         });
     }
-    )};
+)};
 
 userDao.addUser = function(userName) {
 
@@ -39,7 +39,8 @@ userDao.addUser = function(userName) {
                     if (err) {
                         console.log(err.stack)
                     } else {
-                        return resolve(result);
+                        let users = createUser(result.rows);
+                        return resolve(users);
                     }
                 })
             }
