@@ -10,6 +10,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.get("/",(req, res)=>{
+    res.send("Hello There")
+});
 
 app.post('/users',(req,res)=> {
     userCon.addUser(req, res);
