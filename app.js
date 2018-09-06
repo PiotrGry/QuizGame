@@ -20,7 +20,7 @@ app.post('/users',(req,res)=> {
 });
 
 app.get('/highscores', (req, res) => {
-
+    userCon.findHighscores(req, res);
 })
 
 app.get("/users",(req, res)=> {
@@ -36,4 +36,6 @@ app.get("/categories/:category_name/question",(req,res)=> {
 });
 
 
-console.log("helloo");
+app.listen(8080, () => {
+    console.log("Server is listening!");
+});
