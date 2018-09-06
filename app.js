@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.get("/",(req, res)=>{
+    res.send("Hello There");
+    res.end();
+});
 
 app.post('/users',(req,res)=> {
     userCon.addUser(req, res);
@@ -27,10 +31,5 @@ app.get("/categories/:category_name/question",(req,res)=> {
    categoryCon.getQuestionWithCorrectAnswer(req, res);
 });
 
-const server = app.listen(8080, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    var time = moment().format('h:mm:ss a');
 
-    console.log(`Example app listening at http://${host}:${port} at ${time}`)
-});
+console.log("helloo");
