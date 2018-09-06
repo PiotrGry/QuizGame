@@ -25,10 +25,9 @@ app.get("/users",(req, res)=> {
 
 app.get("/categories",(req,res)=> {
    categoryCon.getAllCategories(req, res);
-
 });
 
-app.get("/categories/:category_name",(req,res)=> {
+app.get("/categories/:category_name/question",(req,res)=> {
    categoryCon.getQuestionWithCorrectAnswer(req, res);
 });
 
