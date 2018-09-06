@@ -19,6 +19,10 @@ app.post('/users',(req,res)=> {
     userCon.addUser(req, res);
 });
 
+app.get('/highscores', (req, res) => {
+
+})
+
 app.get("/users",(req, res)=> {
     userCon.findUsers(req, res);
 });
