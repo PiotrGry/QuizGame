@@ -33,3 +33,4 @@ app.get("/categories/:category_name",(req,res)=> {
 });
 
 
+console.log("helloo");
