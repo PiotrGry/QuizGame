@@ -35,7 +35,7 @@ userDao.addUser = function(userName) {
                 return reject(err);
             } else {
                 client.query('INSERT INTO players(user_nick) VALUES($1);', [userName], (err, result) => {
-                    done()
+                    done();
                     if (err) {
                         console.log(err.stack)
                     } else {
@@ -46,6 +46,29 @@ userDao.addUser = function(userName) {
             }
         })
     });
+};
+
+userDao.findHighscores = function() {
+    return new Promise((resolve, reject) => {
+        pool.connect((err, client, done) => {
+            if (err) {
+                return reject(err);
+            } else {
+                client.query('SELECT user_nick, user_score FROM players ' +
+                    'ORDER BY user_score ' +
+                    'LIMIT 10;', (err, result) => {
+
+                    done();
+                    if (err) {
+                        console.log(err.stack);
+                    } else {
+                        let theBestUsers = createUser(result.rows);
+                        return resolve(theBestUsers);
+                    }
+                })
+            }
+        })
+    })
 };
 
 function createUser(usersArr) {

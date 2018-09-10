@@ -16,6 +16,13 @@ userCon.addUser = function(req, res) {
     })
 };
 
+userCon.findHighscores = function(req, res) {
+    userDao.findHighscores().then((result) => {
+        res.json(result);
+        res.end();
+    })
+};
+
 module.exports = userCon;
 
 

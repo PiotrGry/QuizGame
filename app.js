@@ -19,6 +19,10 @@ app.post('/users',(req,res)=> {
     userCon.addUser(req, res);
 });
 
+app.get('/highscores', (req, res) => {
+    userCon.findHighscores(req, res);
+})
+
 app.get("/users",(req, res)=> {
     userCon.findUsers(req, res);
 });
@@ -32,4 +36,4 @@ app.get("/categories/:category_name/question",(req,res)=> {
 });
 
 
-app.listen(8080);
+
