@@ -22,7 +22,7 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "chai": "latest",
+    "chai": "^4.1.2",
     "chai-http": "^4.2.0"
   }
 }
