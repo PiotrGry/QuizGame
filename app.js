@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userCon = require('./controllers/userCon');
 const categoryCon = require("./controllers/categoryCon");
-const moment = require('moment');
+
 
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",(req, res)=>{
-    res.send("Hello There");
+    res.redirect("/categories");
     res.end();
 });
 
@@ -32,4 +32,4 @@ app.get("/categories/:category_name/question",(req,res)=> {
 });
 
 
-console.log("helloo");
+app.listen(8080);
