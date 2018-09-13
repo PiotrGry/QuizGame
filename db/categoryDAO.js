@@ -1,7 +1,7 @@
 const Category = require("../models/Category");
 const Answer = require("../models/Answer");
 const Question = require("../models/Question");
-const pool = require ("./db");
+const pool = require ("./dbConfigNoPoolConnection");
 const categoryDao = {};
 const Promise = require('promise');
 
