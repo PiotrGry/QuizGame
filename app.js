@@ -12,7 +12,7 @@ app.use(express.static('public'));
 
 app.get("/",(req, res)=>{
     // res.redirect(/)
-   res.send("<h1>Hello World</h1>");
+   res.send("<h1>CZESC MONIS jak tam sie miewasz ?</h1>");
     res.end();
 });
 
