@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",(req, res)=>{
-   res.send("Hello World");
+    // res.redirect(/)
+   res.send("<h1>Hello World</h1>");
     res.end();
 });
 
@@ -36,5 +37,8 @@ app.get("/categories/:category_name/question",(req,res)=> {
 });
 
 
+const port = process.env.PORT || 8080;
 
-app.listen(8080);
+app.listen(port,()=>{
+    console.log(`port ${port}`)
+});
