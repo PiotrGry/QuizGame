@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",(req, res)=>{
-    res.redirect("/categories");
+   res.send("Hello World");
     res.end();
 });
 
@@ -21,7 +21,7 @@ app.post('/users',(req,res)=> {
 
 app.get('/highscores', (req, res) => {
     userCon.findHighscores(req, res);
-})
+});
 
 app.get("/users",(req, res)=> {
     userCon.findUsers(req, res);
