@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userCon = require('./controllers/userCon');
+const playerCon = require('./controllers/playerCon');
 const categoryCon = require("./controllers/categoryCon");
 
 
@@ -11,21 +11,20 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",(req, res)=>{
-    // res.redirect(/)
    res.send("<h1>CZESC MONIS jak tam sie miewasz ?</h1>");
     res.end();
 });
 
 app.post('/users',(req,res)=> {
-    userCon.addUser(req, res);
+    playerCon.addUser(req, res);
 });
 
 app.get('/highscores', (req, res) => {
-    userCon.findHighscores(req, res);
+    playerCon.findHighscores(req, res);
 });
 
 app.get("/users",(req, res)=> {
-    userCon.findUsers(req, res);
+    playerCon.findUsers(req, res);
 });
 
 app.get("/categories",(req,res)=> {

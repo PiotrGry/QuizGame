@@ -1,4 +1,4 @@
-class User{
+class Player{
 
     constructor(id, nick, score){
         this._id = id;
@@ -31,4 +31,4 @@ class User{
     }
 }
 
-module.exports = User;
+module.exports = Player;

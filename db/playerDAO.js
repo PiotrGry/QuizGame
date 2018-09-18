@@ -1,9 +1,9 @@
 const pool = require('./db');
-const userDao = {};
+const playerDAO = {};
 const Promise = require('promise');
-const User = require('../models/User');
+const User = require('../models/Player');
 
-userDao.findUsers = function() {
+playerDAO.findUsers = function() {
 
     return new Promise((resolve, reject) => {
 
@@ -26,7 +26,7 @@ userDao.findUsers = function() {
     }
 )};
 
-userDao.addUser = function(userName) {
+playerDAO.addUser = function(userName) {
 
     return new Promise((resolve, reject) => {
 
@@ -34,7 +34,7 @@ userDao.addUser = function(userName) {
             if (err) {
                 return reject(err);
             } else {
-                client.query('INSERT INTO players(user_nick) VALUES($1);', [userName], (err, result) => {
+                client.query('INSERT INTO players(player_nick) VALUES($1);', [userName], (err, result) => {
                     done();
                     if (err) {
                         console.log(err.stack)
@@ -48,14 +48,14 @@ userDao.addUser = function(userName) {
     });
 };
 
-userDao.findHighscores = function() {
+playerDAO.findHighscores = function() {
     return new Promise((resolve, reject) => {
         pool.connect((err, client, done) => {
             if (err) {
                 return reject(err);
             } else {
-                client.query('SELECT user_nick, user_score FROM players ' +
-                    'ORDER BY user_score ' +
+                client.query('SELECT player_nick, player_score FROM players ' +
+                    'ORDER BY player_score ' +
                     'LIMIT 10;', (err, result) => {
 
                     done();
@@ -81,4 +81,4 @@ function createUser(usersArr) {
     return users;
 }
 
-module.exports = userDao;
+module.exports = playerDAO;
