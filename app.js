@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userCon = require('./controllers/userCon');
+const playerCon = require('./controllers/playerCon');
 const categoryCon = require("./controllers/categoryCon");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;

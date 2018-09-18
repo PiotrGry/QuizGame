@@ -48,7 +48,7 @@ categoryDao.getQuestionWithCorrectAnswer= function(req) {
                     //start
                     let questionObj = result.rows[0];
                     let question_id = questionObj.question_id;
-                    let question = getAnswers(question_id).then((answers) => {
+                   getAnswers(question_id).then((answers) => {
                         return createQuestion(questionObj, answers);
                     }).then((question) => {
                         return resolve(question);
@@ -77,7 +77,7 @@ function getAnswers(question_id) {
                         console.log(err.stack)
                     } else {
                         let answers = createAnswers(result.rows);
-                        resolve(answers);
+                       return  resolve(answers);
                     }
                 });
             }
