@@ -2,13 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userCon = require('./controllers/userCon');
 const categoryCon = require("./controllers/categoryCon");
-
-
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const session = require("express-session");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+app.use(session({ secret: "cats" }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/",(req, res)=>{
     // res.redirect(/)
