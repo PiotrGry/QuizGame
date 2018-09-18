@@ -11,20 +11,21 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",(req, res)=>{
+    // res.redirect(/)
    res.send("<h1>CZESC MONIS jak tam sie miewasz ?</h1>");
     res.end();
 });
 
 app.post('/users',(req,res)=> {
-    playerCon.addUser(req, res);
+    userCon.addUser(req, res);
 });
 
 app.get('/highscores', (req, res) => {
-    playerCon.findHighscores(req, res);
+    userCon.findHighscores(req, res);
 });
 
 app.get("/users",(req, res)=> {
-    playerCon.findUsers(req, res);
+    userCon.findUsers(req, res);
 });
 
 app.get("/categories",(req,res)=> {
