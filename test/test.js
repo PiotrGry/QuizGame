@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
 const should = chai.should();
-const  pool = require("../db/dbConfigNoPoolConnection");
+const  pool = require("../db/db");
 
 
 
