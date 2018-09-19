@@ -11,13 +11,14 @@ authDAO.findUser = function(userNick) {
                     console.log(err);
                     return reject(err);
                 } else {
-                    client.query(`SELECT * FROM users WHERE user_nick='${userNick}';`, (err, result) => {
+                    client.query(`SELECT players.*, users.user_password FROM players 
+                    JOIN users ON players.player_id = users.user_id 
+                    WHERE player_nick='${userNick}';`, (err, result) => {
                         done();
 
                         if (err) {
                             console.log(err.stack)
                         } else {
-                            console.log(result.rows);
                             return resolve(result.rows);
                         }
                     })
