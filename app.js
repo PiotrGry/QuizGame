@@ -8,7 +8,9 @@ const categoryCon = require("./controllers/categoryCon");
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname +'/public'));
+
+
 
 app.get("/",(req, res)=>{
     // res.redirect(/)
@@ -37,7 +39,7 @@ app.get("/categories/:category_name/question",(req,res)=> {
 });
 
 app.get("*",(req,res)=> {
-    res.sendStatus(404);
+    res.sendFile(__dirname + "/public/404.jpg");
 });
 
 
