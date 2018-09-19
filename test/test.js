@@ -35,19 +35,5 @@ describe('root rout', ()=> {
     });
 });
 
-describe("categories/:category_name/question",()=> {
-    it("should get question, correct answer and all answers", (done) => {
-        chai.request(address)
-            .get("categories/zwierzeta/question")
-            .end((err, res) => {
-                done();
-                chai.assert.equal(res, " ")
-            });
-    });
 
-    it("should get not 2 ",()=>{
-      let  result = 2+2 ;
-        chai.assert.notEqual(result, 2, "result is 4");
-    })
-});
 
