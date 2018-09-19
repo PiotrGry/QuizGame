@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./app.js",
-    "dev": "export DATABASE_URL=postgres://tvphddyrkhhtjw:f987efef5f3dc193a3e20912238801dd7c6b3ff11e4777e94a5b360dd0bef395@ec2-54-247-101-191.eu-west-1.compute.amazonaws.com:5432/d9bnj67el35rcp  && nodemon ./app.js",
-    "test": "mocha --exit",
-    "devTest": "export DATABASE_URL=postgres://tvphddyrkhhtjw:f987efef5f3dc193a3e20912238801dd7c6b3ff11e4777e94a5b360dd0bef395@ec2-54-247-101-191.eu-west-1.compute.amazonaws.com:5432/d9bnj67el35rcp && mocha --exit"
-
+    "dev": "nodemon ./app.js",
+    "test": "mocha --exit"
   },
   "keywords": [],
   "author": "",
