@@ -31,4 +31,21 @@ class Player{
     }
 }
 
-module.exports = Player;
+class User extends Player {
+
+    constructor(id, nick, score, password) {
+        super(id, nick, score);
+            this._password = password;
+    }
+
+    get password() {
+        return this._password;
+    }
+
+    set password(value) {
+        this._password = value;
+    }
+}
+
+
+module.exports = {Player, User};
