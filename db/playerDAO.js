@@ -16,7 +16,7 @@ playerDAO.findUsers = function() {
                     if (err) {
                         console.log(err.stack)
                     } else {
-                        let users = createUser(result.rows);
+                        let users = createPlayer(result.rows);
                         return resolve(users);
                     }
                 })
@@ -39,7 +39,7 @@ playerDAO.addUser = function(userName) {
                     if (err) {
                         console.log(err.stack)
                     } else {
-                        let users = createUser(result.rows);
+                        let users = createPlayer(result.rows);
                         return resolve(users);
                     }
                 })
@@ -62,7 +62,7 @@ playerDAO.findHighscores = function() {
                     if (err) {
                         console.log(err.stack);
                     } else {
-                        let theBestUsers = createUser(result.rows);
+                        let theBestUsers = createPlayer(result.rows);
                         return resolve(theBestUsers);
                     }
                 })
@@ -71,7 +71,7 @@ playerDAO.findHighscores = function() {
     })
 };
 
-function createUser(usersArr) {
+function createPlayer(usersArr) {
     const users = [];
 
     for (i = 0;  i < usersArr.length; i++) {
