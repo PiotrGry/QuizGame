@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
+    "dev": "export DATABASE_URL=postgres://tvphddyrkhhtjw:f987efef5f3dc193a3e20912238801dd7c6b3ff11e4777e94a5b360dd0bef395@ec2-54-247-101-191.eu-west-1.compute.amazonaws.com:5432/d9bnj67el35rcp && nodemon ./app.js",
     "test": "mocha --exit"
   },
   "keywords": [],
@@ -14,9 +14,11 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "moment": "^2.22.2",
     "nodemon": "^1.18.4",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "pg-pool": "latest",
     "promise": "^8.0.1",
