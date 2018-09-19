@@ -36,6 +36,10 @@ app.get("/categories/:category_name/question",(req,res)=> {
    categoryCon.getQuestionWithCorrectAnswer(req, res);
 });
 
+app.get("*",(req,res)=> {
+    res.sendStatus(404);
+});
+
 
 const port = process.env.PORT || 8080;
 
