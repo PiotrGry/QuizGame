@@ -21,7 +21,6 @@ describe('dbConnection', ()=> {
     });
 });
 
-
 describe('root rout', ()=> {
     it('should get status 200');
 
@@ -35,19 +34,15 @@ describe('root rout', ()=> {
     });
 });
 
-describe("categories/:category_name/question",()=> {
+describe("Should get 404 status on category which does not exist",()=> {
     it("should get question, correct answer and all answers", (done) => {
         chai.request(address)
-            .get("categories/zwierzeta/question")
+            .get("/categories/ewfdwqeq/question")
             .end((err, res) => {
                 done();
-                chai.assert.equal(res, " ")
+                res.should.be.status(404);
             });
     });
 
-    it("should get not 2 ",()=>{
-      let  result = 2+2 ;
-        chai.assert.notEqual(result, 2, "result is 4");
-    })
 });
 
