@@ -75,7 +75,7 @@ function createUser(usersArr) {
     const users = [];
 
     for (i = 0;  i < usersArr.length; i++) {
-        let user = new User(usersArr[i].user_id, usersArr[i].user_nick, usersArr[i].user_score);
+        let user = new User(usersArr[i].player_id, usersArr[i].player_nick, usersArr[i].player_score);
         users.push(user);
     }
     return users;

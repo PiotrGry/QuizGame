@@ -19,15 +19,15 @@ app.get("/",(req, res)=>{
 });
 
 app.post('/users',(req,res)=> {
-    userCon.addUser(req, res);
+    playerCon.addUser(req, res);
 });
 
 app.get('/highscores', (req, res) => {
-    userCon.findHighscores(req, res);
+    playerCon.findHighscores(req, res);
 });
 
 app.get("/users",(req, res)=> {
-    userCon.findUsers(req, res);
+    playerCon.findUsers(req, res);
 });
 
 app.get("/categories",(req,res)=> {
