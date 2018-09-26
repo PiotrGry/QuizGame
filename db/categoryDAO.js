@@ -106,7 +106,7 @@ function createCategories(categArr) {
 }
 
 function createQuestion(questionObj, answers) {
-    return new Question(questionObj.question_description, answers, questionObj.correct_answer);
+    return new Question(questionObj.question_id, questionObj.question_description, answers, questionObj.correct_answer);
 }
 
 module.exports = categoryDao;

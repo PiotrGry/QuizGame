@@ -1,9 +1,17 @@
 class Question {
-
-    constructor(description, answers, correctAnswer) {
+    constructor(questionId, description, answers, correctAnswer) {
+        this._questionId = questionId;
         this._description = description;
         this._answers = answers;
         this._correctAnswer = correctAnswer;
+    }
+
+    get questionId() {
+        return this._questionId;
+    }
+
+    set questionId(value) {
+        this._questionId = value;
     }
 
     get description() {
