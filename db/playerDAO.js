@@ -55,7 +55,7 @@ playerDAO.findHighscores = function() {
                 return reject(err);
             } else {
                 client.query('SELECT player_nick, player_score FROM players ' +
-                    'ORDER BY player_score ' +
+                    'ORDER BY player_score DESC ' +
                     'LIMIT 10;', (err, result) => {
 
                     done();
