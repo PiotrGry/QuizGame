@@ -10,9 +10,6 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname +'/public'));
-
-
-
 app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
