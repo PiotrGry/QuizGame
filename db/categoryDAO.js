@@ -43,28 +43,28 @@ categoryDao.getQuestionWithCorrectAnswer= function(req) {
             client.query(getQuestionWithCorrectAnswerQuery, (err, result) => {
                 done();
                 if (err) {
-                    console.log(console.error(err));
+                    console.error(err);
                 } else {
                     //start
-                    let questionObj = result.rows[0];
-                    let question_id = questionObj.question_id;
-                   getAnswers(question_id).then((answers) => {
-                        return createQuestion(questionObj, answers);
-                    }).then((question) => {
-                        return resolve(question);
-                    }).catch((err) => {
-                        console.log(err);
-                    });
+                    if (result.rows.length === 0) {
+                        return reject(new Error("Category not find"));
+                    } else {
+                        let questionObj = result.rows[0];
+                        getAnswers(questionObj.question_id).then((answers) => {
+                            return createQuestion(questionObj, answers);
+                        }).then((question) => {
+                            return resolve(question);
+                        }).catch((err) => {
+                            console.log(err);
+                        });
+                    }
                 }
             });
         });
     });
-
-
 };
 
 function getAnswers(question_id) {
-
     return new Promise((resolve, reject) => {
         pool.connect((err, client, done) => {
             if (err){
@@ -106,7 +106,7 @@ function createCategories(categArr) {
 }
 
 function createQuestion(questionObj, answers) {
-    return new Question(questionObj.question_description, answers, questionObj.correct_answer);
+    return new Question(questionObj.question_id, questionObj.question_description, answers, questionObj.correct_answer);
 }
 
 module.exports = categoryDao;

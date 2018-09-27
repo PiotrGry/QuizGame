@@ -9,7 +9,9 @@ const session = require("express-session");
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname +'/public'));
+
+
 
 app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
@@ -22,15 +24,15 @@ app.get("/",(req, res)=>{
 });
 
 app.post('/users',(req,res)=> {
-    userCon.addUser(req, res);
+    playerCon.addUser(req, res);
 });
 
 app.get('/highscores', (req, res) => {
-    userCon.findHighscores(req, res);
+    playerCon.findHighscores(req, res);
 });
 
 app.get("/users",(req, res)=> {
-    userCon.findUsers(req, res);
+    playerCon.findUsers(req, res);
 });
 
 app.get("/categories",(req,res)=> {
@@ -39,6 +41,10 @@ app.get("/categories",(req,res)=> {
 
 app.get("/categories/:category_name/question",(req,res)=> {
    categoryCon.getQuestionWithCorrectAnswer(req, res);
+});
+
+app.get("*",(req,res)=> {
+    res.sendFile(__dirname + "/public/404.jpg");
 });
 
 
