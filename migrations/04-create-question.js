@@ -8,15 +8,16 @@ module.exports = {
         type: Sequelize.UUID
       },
       question_description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
-      category_id: {
-        type: Sequelize.UUID
+      createdAt: {
+          type: Sequelize.DATE
       },
-        correct_answer_id: {
-        type: Sequelize.UUID
-        }
-    });
+      updatedAt: {
+          type: Sequelize.DATE
+      }
+    })
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Questions');

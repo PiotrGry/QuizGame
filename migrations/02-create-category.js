@@ -8,7 +8,8 @@ module.exports = {
         type: Sequelize.UUID
       },
       category_name: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

@@ -8,11 +8,14 @@ module.exports = {
           type: Sequelize.UUID
       },
       answer_text: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+          allowNull: false,
       },
-      question_id: {
-        foreignKey: true,
-        type: Sequelize.UUID
+      createdAt: {
+          type: Sequelize.DATE
+      },
+      updatedAt: {
+          type: Sequelize.DATE
       }
     });
   },

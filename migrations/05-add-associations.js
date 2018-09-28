@@ -3,39 +3,39 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.addColumn(
-            'Questions', // name of Source model
-            'category_id', // name of the key we're adding
+            'Questions',
+            'category_id',
             {
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Categories', // name of Target model
-                    key: 'category_id', // key in Target model that we're referencing
+                    model: 'Categories',
+                    key: 'category_id',
                 },
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL',
             }
         ).then(() => {
             return queryInterface.addColumn(
-                'Answers', // name of Source model
-                'question_id', // name of the key we're adding
+                'Answers',
+                'question_id',
                 {
                     type: Sequelize.UUID,
                     references: {
-                        model: 'Questions', // name of Target model
-                        key: 'question_id', // key in Target model that we're referencing
+                        model: 'Questions',
+                        key: 'question_id',
                     },
                     onUpdate: 'CASCADE',
                     onDelete: 'SET NULL',
         })
     }).then(() => {
-            // Payment hasOne Order
+
             return queryInterface.addColumn(
-                'Questions', // name of Target model
-                'correct_answer_id', // name of the key we're adding
+                'Questions',
+                'correct_answer_id',
                 {
                     type: Sequelize.UUID,
                     references: {
-                        model: 'Answers', // name of Source model
+                        model: 'Answers',
                         key: 'answer_id',
                     },
                     onUpdate: 'CASCADE',
@@ -46,17 +46,17 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
         return queryInterface.removeColumn(
-            'Questions', // name of Source model
-            'category_id' // key we want to remove
+            'Questions',
+            'category_id'
         ).then(() => {
             return queryInterface.removeColumn(
-                'Answers', // name of Source model
-                'question_id' // key we want to remove
+                'Answers',
+                'question_id'
             )
         }).then(() => {
             return queryInterface.removeColumn(
-                'Questions', // name of Source model
-                'correct_answer_id' // key we want to remove
+                'Questions',
+                'correct_answer_id'
             )
         });
     }
@@ -65,4 +65,3 @@ module.exports = {
 
 
 
-// Answer.hasOne(models.Question, { foreignKey: 'correct_answer_id' })
