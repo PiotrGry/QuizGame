@@ -36,9 +36,8 @@ categoryDao.getQuestionWithCorrectAnswer= function(req) {
                                                         from questions q
                                                             join categories c2 on q.category_id = c2.category_id
                                                             join answers a on q.correct_answer_id = a.answer_id
-                                                        where category_name = '${req.params.category_name}'
-                                                        order by random()
-                                                        limit 1`;
+                                                        where category_name = '${req.params.category_name}'`;
+
 
             client.query(getQuestionWithCorrectAnswerQuery, (err, result) => {
                 done();
