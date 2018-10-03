@@ -47,7 +47,7 @@ categoryDao.getQuestionWithCorrectAnswer= function(req) {
                 } else {
                     //start
                     if (result.rows.length === 0) {
-                        return reject(new Error("Category not find"));
+                        return reject(new Error("Category not found"));
                     } else {
                         let questionObj = result.rows[0];
                         getAnswers(questionObj.question_id).then((answers) => {
