@@ -26,7 +26,7 @@ categoryDao.getAllCategories = function () {
     });
 };
 
-categoryDao.getQuestionWithCorrectAnswer= function(req) {
+categoryDao.getQuestions= function(req) {
     return new Promise((resolve, reject)=> {
         pool.connect((err, client, done) => {
             if (err) {
@@ -43,20 +43,19 @@ categoryDao.getQuestionWithCorrectAnswer= function(req) {
                 done();
                 if (err) {
                     console.error(err);
+                }
+            //start
+                if (result.rows.length === 0) {
+                    return reject(new Error("Category not found"));
                 } else {
-                    //start
-                    if (result.rows.length === 0) {
-                        return reject(new Error("Category not found"));
-                    } else {
-                        let questionObj = result.rows[0];
-                        getAnswers(questionObj.question_id).then((answers) => {
-                            return createQuestion(questionObj, answers);
-                        }).then((question) => {
-                            return resolve(question);
-                        }).catch((err) => {
-                            console.log(err);
-                        });
-                    }
+                    const questionObj = result.rows[0];
+                    getAnswers(questionObj.question_id).then((answers) => {
+                        return  createQuestion(questionObj, answers);
+                    }).then((questions) => {
+                        return resolve(questions);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
                 }
             });
         });
