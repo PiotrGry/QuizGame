@@ -30,6 +30,10 @@ app.get("/users",(req, res)=> {
     playerCon.findUsers(req, res);
 });
 
+app.get("/users/highscores",(req, res)=> {
+    playerCon.findHighscores(req, res);
+});
+
 app.get("/categories",(req,res)=> {
    categoryCon.getAllCategories(req, res);
 });
