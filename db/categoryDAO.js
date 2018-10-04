@@ -32,35 +32,44 @@ categoryDao.getQuestions= function(req) {
             if (err) {
                 return reject(err);
             }
-            const getQuestionWithCorrectAnswerQuery = `select q.question_id, q.question_description, a.answer_text as correct_answer
+            const getQuestionsWithCorrectAnswerQuery = `select q.question_id, q.question_description, a.answer_text as correct_answer
                                                         from questions q
                                                             join categories c2 on q.category_id = c2.category_id
                                                             join answers a on q.correct_answer_id = a.answer_id
                                                         where category_name = '${req.params.category_name}'`;
 
-
-            client.query(getQuestionWithCorrectAnswerQuery, (err, result) => {
+            client.query(getQuestionsWithCorrectAnswerQuery, (err, result) => {
                 done();
                 if (err) {
                     console.error(err);
                 }
-            //start
                 if (result.rows.length === 0) {
                     return reject(new Error("Category not found"));
                 } else {
-                    const questionObj = result.rows[0];
-                    getAnswers(questionObj.question_id).then((answers) => {
-                        return  createQuestion(questionObj, answers);
-                    }).then((questions) => {
-                        return resolve(questions);
-                    }).catch((err) => {
-                        console.log(err);
-                    });
+                    createQuestions(result.rows)
+                        .then(  questions => {
+                            console.log("question w createquestions");
+                            return resolve( questions)
+                        });
                 }
             });
         });
     });
 };
+ function  createQuestions(rows) {
+    return new Promise(async (resolve) => {
+        const questions = [];
+        // rows.forEach((question) =>{
+        for (let i = 0; i < rows.length; i++) {
+            await getAnswers(rows[i].question_id)
+                .then(answers => {
+                    const questionWithAnswers = createQuestion(rows[i], answers);
+                    questions.push(questionWithAnswers);
+                });
+        }
+        return resolve(questions);
+    });
+}
 
 function getAnswers(question_id) {
     return new Promise((resolve, reject) => {
@@ -85,8 +94,7 @@ function getAnswers(question_id) {
 
 function createAnswers(answersArr) {
     const answers = [];
-
-    for (i = 0;  i < answersArr.length; i++) {
+    for (let i = 0;  i < answersArr.length; i++) {
         let answer = new Answer(answersArr[i].answer_text);
         answers.push(answer);
     }
@@ -95,8 +103,7 @@ function createAnswers(answersArr) {
 
 function createCategories(categArr) {
     const categories = [];
-
-    for (i = 0;  i < categArr.length; i++) {
+    for (let i = 0;  i < categArr.length; i++) {
         let category = new Category(categArr[i].category_id, categArr[i].category_name,);
         categories.push(category);
     }
