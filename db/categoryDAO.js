@@ -48,7 +48,6 @@ categoryDao.getQuestions= function(req) {
                 } else {
                     createQuestions(result.rows)
                         .then(  questions => {
-                            console.log("question w createquestions");
                             return resolve( questions)
                         });
                 }
