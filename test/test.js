@@ -50,5 +50,16 @@ describe("Unexisting paths",()=> {
     });
 
 });
+describe("test json content",()=>{
+    it("should get all 8 questions from category");
+    it("should get all 8 questions from category",(done) =>{
+        chai.request(address)
+            .get("/categories/zwierzeta/question")
+            .end((err, res) =>{
+            chai.assert.strictEqual(res.body.length,8);
+                done();
+            });
+    });
+});
 
 
