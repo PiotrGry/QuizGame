@@ -1,36 +1,51 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userCon = require('./controllers/userCon');
+const playerCon = require('./controllers/playerCon');
 const categoryCon = require("./controllers/categoryCon");
-const moment = require('moment');
+
 
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname +'/public'));
+
+
 
 app.get("/",(req, res)=>{
-    res.send("Hello There");
+
+   res.send("<h1>CZESC MONIS jak tam sie miewasz ?</h1>");
     res.end();
 });
 
 app.post('/users',(req,res)=> {
-    userCon.addUser(req, res);
+    playerCon.addUser(req, res);
+});
+
+app.get('/highscores', (req, res) => {
+    playerCon.findHighscores(req, res);
 });
 
 app.get("/users",(req, res)=> {
-    userCon.findUsers(req, res);
+    playerCon.findUsers(req, res);
 });
+
 
 app.get("/categories",(req,res)=> {
    categoryCon.getAllCategories(req, res);
-
 });
 
-app.get("/categories/:category_name",(req,res)=> {
+app.get("/categories/:category_name/question",(req,res)=> {
    categoryCon.getQuestionWithCorrectAnswer(req, res);
 });
 
+app.get("*",(req,res)=> {
+    res.sendFile(__dirname + "/public/404.jpg");
+});
 
-console.log("helloo");
+
+const port = process.env.PORT || 8080;
+
+app.listen(port,()=>{
+    console.log(`port ${port}`)
+});

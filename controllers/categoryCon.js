@@ -9,10 +9,13 @@ categoryCon.getAllCategories = function (req, res) {
 };
 
 categoryCon.getQuestionWithCorrectAnswer = function(req, res){
-    categoryDao.getQuestionWithCorrectAnswer(req).then((result) =>{
+    categoryDao.getQuestions(req).then((result) =>{
         res.json(result);
         res.end();
-    });
+    })
+        .catch(()=>{
+            res.sendStatus(404);
+    })
 };
 
 module.exports = categoryCon;
