@@ -10,6 +10,7 @@ module.exports = {
       player_nick: {
         type: Sequelize.TEXT,
         allowNull: false,
+        unique: true,
       },
       player_score: {
         type: Sequelize.INTEGER,

@@ -10,6 +10,7 @@ module.exports = {
       category_name: {
         type: Sequelize.TEXT,
         allowNull: false,
+        unique: true,
       },
       created_at: {
         type: Sequelize.DATE,
