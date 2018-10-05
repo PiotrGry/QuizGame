@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         primaryKey: true
     },
-    category_name: DataTypes.TEXT
+    category_name: {
+      type: DataTypes.TEXT,
+      unique: true
+    }
   }, {underscored: true});
   Category.associate = function(models) {
     // associations can be defined here

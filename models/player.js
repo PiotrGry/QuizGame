@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true
     },
-    player_nick: DataTypes.TEXT,
+    player_nick: {
+      type: DataTypes.TEXT,
+      unique: true,
+  },
     player_score: DataTypes.INTEGER
   }, {underscored: true});
   Player.associate = function(models) {
