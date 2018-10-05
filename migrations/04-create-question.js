@@ -12,6 +12,14 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      category_id: {
+        type: Sequelize.UUID,
+        foreignKey: true,
+      },
+      correct_answer_id: {
+        type: Sequelize.UUID,
+        foreignKey: true,
+      },
       created_at: {
           type: Sequelize.DATE,
           defaultValue: Sequelize.NOW,
