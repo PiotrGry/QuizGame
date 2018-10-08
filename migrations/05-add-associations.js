@@ -34,6 +34,8 @@ module.exports = {
                 'correct_answer_id',
                 {
                     type: Sequelize.UUID,
+                    allowNull: true,
+
                     references: {
                         model: 'Answers',
                         key: 'id',
