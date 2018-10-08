@@ -1,6 +1,9 @@
 const express = require('express');
 const playerController = require('../controllers/player');
 const categoryController = require('../controllers/category');
+const questionController = require('../controllers/question');
+
+
 const router = express.Router();
 
 /* GET home page. */
@@ -13,5 +16,8 @@ router.get('/players', playerController.list);
 
 //CATEGORIES ROUTES
 router.get('/categories', categoryController.list);
+
+//QUESTION ROUTER
+router.get('/questions', questionController.list);
 
 module.exports = router;
