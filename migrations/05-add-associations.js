@@ -3,12 +3,12 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.addColumn(
-            'Questions',
+            'questions',
             'category_id',
             {
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Categories',
+                    model: 'categories',
                     key: 'id',
                 },
                 onUpdate: 'CASCADE',
@@ -16,12 +16,12 @@ module.exports = {
             }
         ).then(() => {
             return queryInterface.addColumn(
-                'Answers',
+                'answers',
                 'question_id',
                 {
                     type: Sequelize.UUID,
                     references: {
-                        model: 'Questions',
+                        model: 'questions',
                         key: 'id',
                     },
                     onUpdate: 'CASCADE',
@@ -30,14 +30,14 @@ module.exports = {
     }).then(() => {
 
             return queryInterface.addColumn(
-                'Questions',
+                'questions',
                 'correct_answer_id',
                 {
                     type: Sequelize.UUID,
                     allowNull: true,
 
                     references: {
-                        model: 'Answers',
+                        model: 'answers',
                         key: 'id',
                     },
                     onUpdate: 'CASCADE',
@@ -48,16 +48,16 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
         return queryInterface.removeColumn(
-            'Questions',
+            'questions',
             'category_id'
         ).then(() => {
             return queryInterface.removeColumn(
-                'Answers',
+                'answers',
                 'question_id'
             )
         }).then(() => {
             return queryInterface.removeColumn(
-                'Questions',
+                'questions',
                 'correct_answer_id'
             )
         });
