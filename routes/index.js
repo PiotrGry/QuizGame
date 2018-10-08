@@ -19,5 +19,6 @@ router.get('/categories', categoryController.list);
 
 //QUESTION ROUTER
 router.get('/questions', questionController.list);
+router.get('/questions/:id', questionController.findOne);
 
 module.exports = router;
