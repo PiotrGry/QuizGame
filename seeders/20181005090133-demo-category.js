@@ -8,19 +8,17 @@ module.exports = {
             category_name: 'Kittieeees',
             created_at: Sequelize.fn('NOW'),
             updated_at: Sequelize.fn('NOW'),
-        }], {});
+        }], {returning: true}).then(function(categoryArr) {
+            const category_id = categoryArr[0].id;
 
-        const categories = await queryInterface.sequelize.query(`SELECT id FROM categories;`);
-
-        const id = categories[0][0].id;
-
-        return await queryInterface.bulkInsert('questions', [{
-            id: uuidv4(),
-            question_description: 'How many legs does cats have?',
-            category_id: id,
-            created_at: Sequelize.fn('NOW'),
-            updated_at: Sequelize.fn('NOW'),
-        }], {});
+            return queryInterface.bulkInsert('questions', [{
+                id: uuidv4(),
+                question_description: 'How many legs does cats have?',
+                category_id: category_id,
+                created_at: Sequelize.fn('NOW'),
+                updated_at: Sequelize.fn('NOW'),
+            }], {});
+        })
     },
 
     down: async (queryInterface, Sequelize) => {
@@ -28,3 +26,6 @@ module.exports = {
         await queryInterface.bulkDelete('categories', null, {});
     }
 };
+
+
+
