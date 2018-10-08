@@ -1,4 +1,5 @@
 const Category = require("../models").Category;
+const Question = require("../models").Question;
 
 module.exports = {
     list(req, res) {
@@ -9,3 +10,7 @@ module.exports = {
             });
     }
 };
+
+
+
+
