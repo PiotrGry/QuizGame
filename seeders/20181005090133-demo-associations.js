@@ -50,20 +50,7 @@ module.exports = {
                     updated_at: Sequelize.fn('NOW'),
                 }], {returning: true}).then(async function(answerArr) {
 
-                    const correctAnswerId = answerArr[3].id;
-
-                    const questionsArr = await queryInterface.sequelize.query(
-                        `SELECT * FROM Questions;`
-                    );
-
-                    const questionId = questionsArr[0][0].id;
-
-                    Question.update({correct_answer_id: correctAnswerId}, { where: { id: questionId } }).then((result) => {
-                        // here your result is simply an array with number of affected rows
-                        console.log(result);
-                        // [ 1 ]
-                    });
-                    //adding correct_answer_id isnt working
+                    //TO DO: adding correct_answer_id to question
                 })
             });
         })
