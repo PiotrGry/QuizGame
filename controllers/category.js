@@ -8,6 +8,19 @@ module.exports = {
             .catch((error) => {
                 res.status(400).send(error);
             });
+    },
+
+    findById(req, res) {
+        console.log(req.params.id)
+        return Category.findById(req.params.id, {
+                include: [{
+                    model: Question,
+                    as: 'questions'
+                }],
+            }).then((category) => res.status(200).send(category))
+            .catch((error) => {
+                res.status(400).send(error);
+            });
     }
 };
 
