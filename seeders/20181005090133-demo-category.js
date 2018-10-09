@@ -4,7 +4,7 @@ const Question = require('../models').Question;
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.bulkInsert('categories', [{
+        await queryInterface.bulkInsert('Categories', [{
             id: uuidv4(),
             category_name: 'Kittieeees',
             created_at: Sequelize.fn('NOW'),
@@ -12,7 +12,7 @@ module.exports = {
         }], {returning: true}).then(function(categoryArr) {
             const categoryId = categoryArr[0].id;
 
-            return queryInterface.bulkInsert('questions', [{
+            return queryInterface.bulkInsert('Questions', [{
                 id: uuidv4(),
                 question_description: 'How many legs does cats have?',
                 category_id: categoryId,
@@ -21,7 +21,7 @@ module.exports = {
             }], {returning: true}).then(async function(questionArr) {
                 const questionId = questionArr[0].id;
 
-                return await queryInterface.bulkInsert('answers', [{
+                return await queryInterface.bulkInsert('Answers', [{
                     id: uuidv4(),
                     answer_text: '5',
                     question_id: questionId,
@@ -53,7 +53,7 @@ module.exports = {
                     const correctAnswerId = answerArr[3].id;
 
                     const questionsArr = await queryInterface.sequelize.query(
-                        `SELECT * FROM questions;`
+                        `SELECT * FROM Questions;`
                     );
 
                     const questionId = questionsArr[0][0].id;
@@ -70,9 +70,9 @@ module.exports = {
     },
 
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.bulkDelete('questions', null, {});
-        await queryInterface.bulkDelete('categories', null, {});
-        await queryInterface.bulkDelete('answers', null, {});
+        await queryInterface.bulkDelete('Questions', null, {});
+        await queryInterface.bulkDelete('Categories', null, {});
+        await queryInterface.bulkDelete('Answers', null, {});
     }
 };
 
