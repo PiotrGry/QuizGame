@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -35,3 +36,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//TO DO:
+//skonczylas na tym, ze do bazy dodaja sie playerzy i kategorie;
+//trzeba teraz ogarnac dodawanie questions i answers wraz z asocjacjami; model question jest juz gotowy, powinien dzialac
