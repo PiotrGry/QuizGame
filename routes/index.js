@@ -22,4 +22,7 @@ router.get('/categories/:id/questions', categoryController.findById);
 router.get('/questions', questionController.list);
 router.get('/questions/:id', questionController.findOne);
 
+//HIGHSCORES ROUTER
+router.get('/highscores', playerController.listHighscores);
+
 module.exports = router;
