@@ -3,8 +3,7 @@ const playerController = require('../controllers/player');
 const categoryController = require('../controllers/category');
 const questionController = require('../controllers/question');
 
-
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,5 +23,9 @@ router.get('/questions/:id', questionController.findOne);
 
 //HIGHSCORES ROUTER
 router.get('/highscores', playerController.listHighscores);
+
+router.get('/*', function(req, res, next) {
+    res.render('index', { title: '404 honey :<' });
+});
 
 module.exports = router;
