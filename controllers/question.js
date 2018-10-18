@@ -20,7 +20,3 @@ module.exports = {
             });
     }
 };
-
-
-//findOne
-//pod dodawaniu answer trzeba wyciągnąć question i dodać correct_answer_id do niego ale także do answer trzeba dodać question_id więc findOne się motzno przyda
