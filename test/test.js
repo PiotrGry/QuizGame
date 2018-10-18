@@ -48,11 +48,11 @@ describe("categories",()=> {
     });
 
     it("should get all 8 questions from category",(done) =>{
-        const expectedLengh = 8;
+        const expectedLength = 8;
         chai.request(address)
             .get("/categories/zwierzeta/question")
             .end((err, res) =>{
-                chai.assert.strictEqual(res.body.length, expectedLengh);
+                chai.assert.strictEqual(res.body.length, expectedLength);
                 done();
             });
     });

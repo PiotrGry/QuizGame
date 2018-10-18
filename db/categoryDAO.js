@@ -32,10 +32,10 @@ categoryDao.getQuestions= function(req) {
             if (err) {
                 return reject(err);
             }
-            const getQuestionsWithCorrectAnswerQuery = `select q.question_id, q.question_description, a.answer_text as correct_answer
+            const getQuestionsWithCorrectAnswerQuery = `select q.id, q.question_description, a.answer_text as correct_answer
                                                         from questions q
-                                                            join categories c2 on q.category_id = c2.category_id
-                                                            join answers a on q.correct_answer_id = a.answer_id
+                                                            join categories c2 on q.category_id = c2.id
+                                                            join answers a on q.correct_answer_id = a.id
                                                         where category_name = '${req.params.category_name}'`;
 
             client.query(getQuestionsWithCorrectAnswerQuery, (err, result) => {
@@ -60,7 +60,7 @@ categoryDao.getQuestions= function(req) {
         const questions = [];
         // rows.forEach((question) =>{
         for (let i = 0; i < rows.length; i++) {
-            await getAnswers(rows[i].question_id)
+            await getAnswers(rows[i].id)
                 .then(answers => {
                     const questionWithAnswers = createQuestion(rows[i], answers);
                     questions.push(questionWithAnswers);
