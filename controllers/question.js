@@ -5,7 +5,7 @@ module.exports = {
         return Question.findAll()
             .then((question) => res.status(200).send(question))
             .catch((error) => {
-                res.status(400).send(error);
+                res.status(400).send(error.message);
             });
     },
 
@@ -16,11 +16,25 @@ module.exports = {
             }
         }).then((question) => res.status(200).send(question))
             .catch((error) => {
-                res.status(400).send(error);
+                res.status(400).send(error.message);
             });
+    },
+
+    add(req, res) {
+        const categoryId = req.params.id;
+        const questionDescription = req.body.question_description;
+
+        return Question.create({
+                question_description: questionDescription,
+                category_id: categoryId,
+            }
+        ).then((category) => {
+            res.status(201).send(category)
+        })
+            .catch(error => {
+                res.status(400).send(error.message);
+            })
     }
 };
 
 
-//findOne
-//pod dodawaniu answer trzeba wyciągnąć question i dodać correct_answer_id do niego ale także do answer trzeba dodać question_id więc findOne się motzno przyda

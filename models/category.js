@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
     id: {
         type: DataTypes.UUID,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     category_name: {
       type: DataTypes.TEXT,
