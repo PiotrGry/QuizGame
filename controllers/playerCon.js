@@ -14,7 +14,8 @@ playerCon.findUsers = function(req, res) {
 
 playerCon.addUser = function(req, res) {
     const playerName = req.body.playerName;
-    playerDao.addUser(playerName).then((result) => {
+    const playerScore = req.body.playerScore;
+    playerDao.addUser(playerName,playerScore).then((result) => {
         res.json(result);
         res.end();
     })

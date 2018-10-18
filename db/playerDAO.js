@@ -26,7 +26,7 @@ playerDAO.findUsers = function() {
     }
 )};
 
-playerDAO.addUser = function(userName) {
+playerDAO.addUser = function(userName, playerScore) {
 
     return new Promise((resolve, reject) => {
 
@@ -34,7 +34,7 @@ playerDAO.addUser = function(userName) {
             if (err) {
                 return reject(err);
             } else {
-                client.query('INSERT INTO players(player_nick) VALUES($1);', [userName], (err, result) => {
+                client.query('INSERT INTO players(player_nick, player_score) VALUES($1,$2);', [userName,playerScore], (err, result) => {
                     done();
                     if (err) {
                         console.log(err.stack)
