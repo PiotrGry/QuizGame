@@ -25,6 +25,20 @@ module.exports = {
             .catch((error) => {
                 res.status(404).send(error.message);
             });
+    },
+
+    add(req, res) {
+        const categoryName = req.body.category_name;
+
+        return Category.create({
+                category_name: categoryName
+            }
+        ).then((category) => {
+            res.status(201).send(category)
+        })
+            .catch(error => {
+                res.status(400).send(error.message);
+            })
     }
 };
 
