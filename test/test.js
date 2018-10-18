@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
 const db = require("../models/index.js");
-
+const should = chai.should();
 const address = 'http://localhost:8080';
 chai.use(chaiHttp);
 
@@ -21,18 +21,18 @@ describe('check Connection to db', ()=> {
 });
 
 
-// describe('root rout', ()=> {
-//     it('should get status 200');
-//
-//     it('should get status 200', (done) => {
-//         chai.request(address)
-//             .get('/')
-//             .end((err, res) => {
-//                 done();
-//                 res.should.be.status(200);
-//             })
-//     });
-// });
+describe('root rout', ()=> {
+    it('should get status 200');
+
+    it('should get status 200', (done) => {
+        chai.request(address)
+            .get('/')
+            .end((err, res) => {
+                done();
+                res.should.be.status(200);
+            });
+    });
+});
 //
 //
 // describe("categories",()=> {
