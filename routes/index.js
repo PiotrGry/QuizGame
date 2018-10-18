@@ -17,6 +17,7 @@ router.post('/players', playerController.add);
 //CATEGORIES ROUTES
 router.get('/categories', categoryController.list);
 router.get('/categories/:id/questions', categoryController.findById);
+router.post('/categories', categoryController.add);
 
 //QUESTION ROUTER
 router.get('/questions', questionController.list);
