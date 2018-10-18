@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 
 //PLAYERS ROUTES
 router.get('/players', playerController.list);
+router.post('/players', playerController.add);
 
 //CATEGORIES ROUTES
 router.get('/categories', categoryController.list);
