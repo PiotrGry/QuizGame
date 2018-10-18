@@ -1,5 +1,6 @@
 const Category = require("../models").Category;
 const Question = require("../models").Question;
+const Answer = require("../models").Answer;
 
 module.exports = {
     list(req, res) {
@@ -14,7 +15,11 @@ module.exports = {
         return Category.findById(req.params.id, {
                 include: [{
                     model: Question,
-                    as: 'questions'
+                    as: 'questions',
+                    include: [{
+                        model: Answer,
+                        as: 'answers',
+                    }]
                 }],
             }).then((category) => res.status(200).send(category))
             .catch((error) => {
@@ -22,6 +27,9 @@ module.exports = {
             });
     }
 };
+
+
+
 
 
 
