@@ -18,6 +18,7 @@ router.post('/players', playerController.add);
 router.get('/categories', categoryController.list);
 router.get('/categories/:id/questions', categoryController.findById);
 router.post('/categories', categoryController.add);
+router.post('/categories/:id/questions', questionController.add);
 
 //QUESTION ROUTER
 router.get('/questions', questionController.list);
