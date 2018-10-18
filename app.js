@@ -13,7 +13,7 @@ app.use(express.static(__dirname +'/public'));
 
 
 app.get("/",(req, res)=>{
-    // res.redirect(/)
+
    res.send("<h1>CZESC MONIS jak tam sie miewasz ?</h1>");
     res.end();
 });
@@ -29,6 +29,7 @@ app.get('/highscores', (req, res) => {
 app.get("/users",(req, res)=> {
     playerCon.findUsers(req, res);
 });
+
 
 app.get("/categories",(req,res)=> {
    categoryCon.getAllCategories(req, res);
