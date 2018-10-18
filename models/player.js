@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const Player = sequelize.define('Player', {
     id: {
       type: DataTypes.UUID,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
+
     },
     player_nick: {
       type: DataTypes.TEXT,

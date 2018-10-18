@@ -12,10 +12,13 @@ router.get('/', function(req, res, next) {
 
 //PLAYERS ROUTES
 router.get('/players', playerController.list);
+router.post('/players', playerController.add);
 
 //CATEGORIES ROUTES
 router.get('/categories', categoryController.list);
 router.get('/categories/:id/questions', categoryController.findById);
+router.post('/categories', categoryController.add);
+router.post('/categories/:id/questions', questionController.add);
 
 //QUESTION ROUTER
 router.get('/questions', questionController.list);

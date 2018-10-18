@@ -20,5 +20,21 @@ module.exports = {
             .catch((error) => {
                 res.status(400).send(error.message);
             });
+    },
+
+    add(req, res) {
+        const playerNick= req.body.player_nick;
+        const playerScore = req.body.player_score;
+
+        return Player.create({
+            player_nick: playerNick, player_score: playerScore
+        }
+        ).then((player) => {
+                res.status(201).send(player)
+            })
+            .catch(error => {
+                res.status(400).send(error.message);
+            })
     }
 };
+
