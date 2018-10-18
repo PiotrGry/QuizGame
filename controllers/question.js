@@ -5,7 +5,7 @@ module.exports = {
         return Question.findAll()
             .then((question) => res.status(200).send(question))
             .catch((error) => {
-                res.status(400).send(error);
+                res.status(400).send(error.message);
             });
     },
 
@@ -16,7 +16,7 @@ module.exports = {
             }
         }).then((question) => res.status(200).send(question))
             .catch((error) => {
-                res.status(400).send(error);
+                res.status(400).send(error.message);
             });
     }
 };
