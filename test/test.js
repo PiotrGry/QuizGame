@@ -1,32 +1,22 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
-const db = require("../models/index.js").sequelize;
+const db = require("../models/index.js");
 
 const address = 'http://localhost:8080';
 chai.use(chaiHttp);
 
 
 
-describe('checkConnectionToDb', ()=> {
-    // it('Database connection');
+describe('check Connection to db', ()=> {
     it("Test sequalize connection");
 
-    // it('Database connection', (done) => {
-    //     pool.query('SELECT 1 + 1 AS solution', (error, results) => {
-    //         if (error) throw error;
-    //         done();
-    //         chai.assert.equal(results.rows[0].solution, 2);
-    //     });
-    // });
-
     it("Test sequalize connection", (done) => {
-        db.query("SELECT 1+1 AS result", {type: db.QueryType.SELECT})
-            .then((result)=>{
-                console.log(result);
-                done()
-            });
-
+        db.sequelize.query("SELECT 1+1 AS result",{type:db.Sequelize.QueryTypes.SELECT}).then((resolve)=> {
+            const expected = 2;
+            chai.assert.equal(resolve[0].result, expected);
+            done();
+        });
     });
 });
 
