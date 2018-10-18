@@ -11,7 +11,6 @@ module.exports = {
     },
 
     findById(req, res) {
-        console.log(req.params.id)
         return Category.findById(req.params.id, {
                 include: [{
                     model: Question,
@@ -19,7 +18,7 @@ module.exports = {
                 }],
             }).then((category) => res.status(200).send(category))
             .catch((error) => {
-                res.status(400).send(error);
+                res.status(404).send(error);
             });
     }
 };
