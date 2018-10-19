@@ -1,10 +1,12 @@
+const uuid = require('uuid/v4');
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Question = sequelize.define('Question', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: uuid(),
     },
     question_description: {
       type: DataTypes.TEXT,

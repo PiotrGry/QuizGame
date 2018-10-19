@@ -1,10 +1,12 @@
+const uuid = require('uuid/v4');
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Player = sequelize.define('Player', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      autoIncrement: true,
+      defaultValue: uuid(),
 
     },
     player_nick: {
