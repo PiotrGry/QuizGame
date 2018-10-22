@@ -1,11 +1,13 @@
+const uuid = require('uuid/v4');
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        autoIncrement: true,
-    },
+      id: {
+          type: DataTypes.UUID,
+          primaryKey: true,
+          defaultValue: uuid(),
+      },
     category_name: {
       type: DataTypes.TEXT,
       unique: true
@@ -19,3 +21,4 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Category;
 };
+
