@@ -14,7 +14,7 @@ module.exports = {
             order: [
                 ['player_score', 'DESC']
             ],
-            limit: 5
+            limit: 10
             }
         ).then((players) => res.status(200).send(players))
             .catch((error) => {
