@@ -14,8 +14,8 @@ describe('check Connection to db', ()=> {
         db.sequelize.query("SELECT 1+1 AS result",{type:db.Sequelize.QueryTypes.SELECT}).then((resolve)=> {
             const expected = 2;
             chai.assert.equal(resolve[0].result, expected);
-            done();
         });
+        done();
     });
 });
 
@@ -27,9 +27,9 @@ describe('root rout', ()=> {
         chai.request(server)
             .get('/')
             .end((err, res) => {
-                done();
                 res.should.be.status(200);
-        });
+            });
+        done();
     });
 });
 
@@ -43,8 +43,8 @@ describe('root rout', ()=> {
                 .get("/categories/someStrangeSignsWhichRepresentUnexistingNameOfCategory/question")
                 .end((err, res) =>{
                     res.should.be.status(404);
-                    done()
                 });
+            done()
         });
 
     it("should get all 8 questions from category",(done) =>{
@@ -53,8 +53,8 @@ describe('root rout', ()=> {
             .get("/categories/485af8be-c38c-4e80-a135-d75223a81817/questions")
             .end((err, res) =>{
                 chai.assert.strictEqual(res.body.questions.length, expectedLength);
-                done();
             });
+        done();
     });
 
 
@@ -68,16 +68,17 @@ describe("high scores",()=>{
             .get("/highscores")
             .end((err, res) =>{
                 chai.assert.strictEqual(res.body.length, 5);
-                done();
             });
+        done();
     });
+
     it("should get \"Kamil\" as best player",(done)=>{
         chai.request(server)
             .get("/highscores")
             .end((err, res) =>{
                 chai.assert.strictEqual(res.body[0].player_nick, "Kamil");
-                done();
             });
+        done();
     });
 });
 
