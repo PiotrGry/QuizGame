@@ -60,7 +60,7 @@ describe('root rout', ()=> {
 
 });
 describe("high scores",()=>{
-    it("should get 10 users in descending order");
+    it("should get 5 users in descending order");
     it("should get \"Kamil\"as best player" );
 
     it("should get 5 users in descending order",(done)=>{
