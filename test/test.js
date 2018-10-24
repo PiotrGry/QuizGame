@@ -40,7 +40,7 @@ describe('root rout', ()=> {
 
         it("should get status 404 when requested category is missing", (done) => {
             chai.request(server)
-                .get("/categories/someStrangeSignsWhichRepresentUnexistingNameOfCategory/question")
+                .get("/categories/someStrangeSignsWhichRepresentUnexistingNameOfCategory/questions")
                 .end((err, res) =>{
                     res.should.be.status(404);
                 });
