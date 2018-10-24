@@ -65,5 +65,9 @@ typings/
 
 # JetBrains
 .idea/
+
+# Fragile Data
+
 config.json
 db_config
+
