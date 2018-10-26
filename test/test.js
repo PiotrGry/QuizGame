@@ -28,8 +28,8 @@ describe('root rout', ()=> {
             .get('/')
             .end((err, res) => {
                 res.should.be.status(200);
+                done();
             });
-        done();
     });
 });
 
@@ -43,8 +43,8 @@ describe('root rout', ()=> {
                 .get("/categories/someStrangeSignsWhichRepresentUnexistingNameOfCategory/questions")
                 .end((err, res) =>{
                     res.should.be.status(404);
+                    done()
                 });
-            done()
         });
 
     it("should get all 8 questions from category",(done) =>{
@@ -53,8 +53,8 @@ describe('root rout', ()=> {
             .get("/categories/485af8be-c38c-4e80-a135-d75223a81817/questions")
             .end((err, res) =>{
                 chai.assert.strictEqual(res.body.questions.length, expectedLength);
+                done();
             });
-        done();
     });
 
 
@@ -68,8 +68,8 @@ describe("high scores",()=>{
             .get("/highscores")
             .end((err, res) =>{
                 chai.assert.strictEqual(res.body.length, 10);
+                done();
             });
-        done();
     });
 
     it("should get \"Kamil\" as best player",(done)=>{
@@ -77,8 +77,8 @@ describe("high scores",()=>{
             .get("/highscores")
             .end((err, res) =>{
                 chai.assert.strictEqual(res.body[0].player_nick, "Kamil");
+                done();
             });
-        done();
     });
 });
 
