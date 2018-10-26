@@ -5,6 +5,13 @@ const questionController = require('../controllers/question');
 
 const router = express.Router({mergeParams: true});
 
+app.all('*', function(req, res, next) {
+    const origin = req.get('origin');
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express' });
