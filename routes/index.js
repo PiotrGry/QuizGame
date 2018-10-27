@@ -5,7 +5,7 @@ const questionController = require('../controllers/question');
 
 const router = express.Router({mergeParams: true});
 
-app.all('*', function(req, res, next) {
+router.all('*', function(req, res, next) {
     const origin = req.get('origin');
     res.header('Access-Control-Allow-Origin', origin);
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
